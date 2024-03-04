@@ -1,5 +1,9 @@
 #include "sort.h"
 
+void swap(int *a, int *b);
+size_t partition(int array[], size_t size);
+void print_sort(int array[], size_t size, int init);
+
 /**
  * quick_sort - Function that sorts an array based on
  * quick sort algorithm
