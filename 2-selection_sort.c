@@ -1,43 +1,49 @@
 #include "sort.h"
 
-/**
- * _swap - swap two numbers
- * @a: integer
- * @b: integer
- **/
-void _swap(int *a, int *b)
-{
-	int tmp;
+void swap(int *a, int *b);
 
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+/**
+ * selection_sort - Calls function
+ * @array: Array to be sorted
+ * @size: Size of array given
+ * Descrtiption: Function that sorts an array using the Selection
+ * sort algotrithm
+ * Return: 0
+ */
+void selection_sort(int *array, size_t size)
+{
+	unsigned int i, j, min_idx;
+
+	if (!array)
+		return;
+
+	for (i = 0; i < size - 1; i++)
+	{
+		min_idx = i;
+		for (j = i + 1; j < size; j++)
+			if (array[j] < array[min_idx])
+				min_idx = j;
+
+		if (i != min_idx)
+		{
+			swap(&array[min_idx], &array[i]);
+			print_array(array, size);
+		}
+	}
 }
 
 /**
- * selection_sort - sort array using selection sort algorithm
- * @array: array
- * @size: array size
- **/
-void selection_sort(int *array, size_t size)
+ * swap - Function that swaps two values
+ *
+ * @a: Fisrt value
+ * @b: Second value
+ * Return: 0
+ */
+void swap(int *a, int *b)
 {
-	unsigned int i, j, min;
+	int tmp;
 
-	if (array == NULL || size < 2)
-		return;
-
-	for (i = 0; i < size; i++)
-	{
-		min = i;
-		for (j = i + 1; j < size; j++)
-		{
-			if (array[min] > array[j])
-				min = j;
-		}
-		if (min != i)
-		{
-			_swap(&array[i], &array[min]);
-			print_array(array, size)
-		}
-	}
+	tmp = *b;
+	*b = *a;
+	*a = tmp;
 }
